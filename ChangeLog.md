@@ -2,6 +2,7 @@
 
 ## [Unrelease]
 ### [Added]
+- Add `WebMercator` to convert coordinate.
 
 ### [Changed]
 
