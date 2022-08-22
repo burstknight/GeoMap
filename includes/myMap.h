@@ -11,6 +11,9 @@
 #define Tile_Width 256
 #define Tile_Height 256
 
+/**
+ * Desciption: This class can parse GPS position to get map from OSM
+ */
 class myMap{
 	// private fields
 	private:
@@ -23,7 +26,8 @@ class myMap{
 
 	// public method
 	public:
-		/* Desciption: Constructor
+		/** 
+		 * Desciption: Constructor
 		 * @param dLat: The center latitude
 		 * @param dLong: Thte center longitude
 		 * @param iZoom: The level layer of tile map
@@ -32,14 +36,16 @@ class myMap{
 		 */
 		myMap(double dLat, double dLong, int iZoom, int iWidth = 1900, int iHeight = 1000);
 
-		/* Desciption: Get map image
+		/** 
+		 * Desciption: Get map image
 		 * @return Return the map image
 		 */
 		cv::Mat getMap() const;
 	
 	// private methods
 	private:
-		/* Desciption: Get the list of the coordinates for tiles
+		/** 
+		 * Desciption: Get the list of the coordinates for tiles
 		 * @param vTileCoords[out]: The list of the coordinates for tiles
 		 */
 		void getTilesCoord(std::vector<cv::Point2i> &vTileCoords);
