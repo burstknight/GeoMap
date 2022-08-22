@@ -3,9 +3,11 @@
 
 #include "opencv2/core/mat.hpp"
 #include "opencv2/core/types.hpp"
+#include <cstddef>
 #include <opencv2/opencv.hpp>
 #include <utility>
 #include <vector>
+#include <curl/curl.h>
 
 #define Zoom_Max  19
 #define Tile_Width 256
@@ -40,15 +42,18 @@ class myMap{
 		 * Desciption: Get map image
 		 * @return Return the map image
 		 */
-		cv::Mat getMap() const;
+		cv::Mat getMap();
 	
 	// private methods
 	private:
 		/** 
-		 * Desciption: Get the list of the coordinates for tiles
+		 * @brief Desciption: Get the list of the coordinates for tiles
 		 * @param vTileCoords[out]: The list of the coordinates for tiles
+		 * @param oTileSize[out]: The size of the tiles
 		 */
-		void getTilesCoord(std::vector<cv::Point2i> &vTileCoords);
+		void getTilesCoord(std::vector<cv::Point2i> &vTileCoords, cv::Size2i &oTileSize);
+
+		static size_t writeMemoryCallback(void *pContents, size_t iSize, size_t nmemb, void *userp);
 }; // End of class myMap
 
 #endif
