@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.1"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>GeoMap: examples/testWebMercator/main.cpp File Reference</title>
+<title>GeoMap: examples/testWebMercator/src/main.cpp File Reference</title>
 <link href="../../tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="../../jquery.js"></script>
 <script type="text/javascript" src="../../dynsections.js"></script>
@@ -92,26 +92,230 @@ $(document).ready(function(){initNavTree('df/d0a/main_8cpp.html','../../'); init
 </div>
 
 <div class="header">
+  <div class="summary">
+<a href="#nested-classes">Classes</a> &#124;
+<a href="#func-members">Functions</a>  </div>
   <div class="headertitle">
 <div class="title">main.cpp File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><code>#include &quot;<a class="el" href="../../d0/d45/WebMercator_8h_source.html">../../includes/WebMercator.h</a>&quot;</code><br />
+<div class="textblock"><code>#include &quot;<a class="el" href="../../d0/d45/WebMercator_8h_source.html">../../../includes/WebMercator.h</a>&quot;</code><br />
+<code>#include &lt;stdio.h&gt;</code><br />
+<code>#include &lt;unistd.h&gt;</code><br />
+<code>#include &lt;string.h&gt;</code><br />
+<code>#include &lt;stdlib.h&gt;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for main.cpp:</div>
 <div class="dyncontent">
-<div class="center"><img src="../../da/dce/main_8cpp__incl.png" border="0" usemap="#aexamples_2testWebMercator_2main_8cpp" alt=""/></div>
-<map name="aexamples_2testWebMercator_2main_8cpp" id="aexamples_2testWebMercator_2main_8cpp">
-<area shape="rect" title=" " alt="" coords="5,5,207,47"/>
-<area shape="rect" href="../../d0/d45/WebMercator_8h.html" title=" " alt="" coords="5,95,207,121"/>
+<div class="center"><img src="../../da/dce/main_8cpp__incl.png" border="0" usemap="#aexamples_2testWebMercator_2src_2main_8cpp" alt=""/></div>
+<map name="aexamples_2testWebMercator_2src_2main_8cpp" id="aexamples_2testWebMercator_2src_2main_8cpp">
+<area shape="rect" title=" " alt="" coords="270,5,471,47"/>
+<area shape="rect" href="../../d0/d45/WebMercator_8h.html" title=" " alt="" coords="5,95,219,121"/>
+<area shape="rect" title=" " alt="" coords="243,95,309,121"/>
+<area shape="rect" title=" " alt="" coords="333,95,408,121"/>
+<area shape="rect" title=" " alt="" coords="433,95,503,121"/>
+<area shape="rect" title=" " alt="" coords="527,95,598,121"/>
 </map>
 </div>
-</div></div><!-- contents -->
+</div><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
+Classes</h2></td></tr>
+<tr class="memitem:d0/df4/structPosition"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../df/d0a/main_8cpp.html#d0/df4/structPosition">Position</a></td></tr>
+<tr class="memdesc:d0/df4/structPosition"><td class="mdescLeft">&#160;</td><td class="mdescRight">This struct is to store the valus from parsing the arguments by user.  <a href="../../df/d0a/main_8cpp.html#d0/df4/structPosition">More...</a><br /></td></tr>
+<tr class="separator:d0/df4/structPosition"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
+Functions</h2></td></tr>
+<tr class="memitem:a1b28050de07af723f8c908a4c1edc09f"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../df/d0a/main_8cpp.html#a1b28050de07af723f8c908a4c1edc09f">parseArgs</a> (int argc, char **argv, <a class="el" href="../../df/d0a/main_8cpp.html#d0/df4/structPosition">Position</a> &amp;oPosition)</td></tr>
+<tr class="memdesc:a1b28050de07af723f8c908a4c1edc09f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parse arguments from user.  <a href="../../df/d0a/main_8cpp.html#a1b28050de07af723f8c908a4c1edc09f">More...</a><br /></td></tr>
+<tr class="separator:a1b28050de07af723f8c908a4c1edc09f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad412ed60514b0d9c59e846b889a5e8b5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../df/d0a/main_8cpp.html#ad412ed60514b0d9c59e846b889a5e8b5">parseGPS</a> (<a class="el" href="../../df/d0a/main_8cpp.html#d0/df4/structPosition">Position</a> &amp;oPosition)</td></tr>
+<tr class="memdesc:ad412ed60514b0d9c59e846b889a5e8b5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parse GPS point to connvert the coordinate system.  <a href="../../df/d0a/main_8cpp.html#ad412ed60514b0d9c59e846b889a5e8b5">More...</a><br /></td></tr>
+<tr class="separator:ad412ed60514b0d9c59e846b889a5e8b5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3c04138a5bfe5d72780bb7e82a18e627"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../df/d0a/main_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627">main</a> (int argc, char **argv)</td></tr>
+<tr class="separator:a3c04138a5bfe5d72780bb7e82a18e627"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<hr/><h2 class="groupheader">Class Documentation</h2>
+<a name="d0/df4/structPosition" id="d0/df4/structPosition"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#d0/df4/structPosition">&#9670;&nbsp;</a></span>Position</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">struct Position</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<div class="textblock"><p>This struct is to store the valus from parsing the arguments by user. </p>
+</div><table class="fieldtable">
+<tr><th colspan="3">Class Members</th></tr>
+<tr><td class="fieldtype">
+<a id="a8049a3fdabf9b9f6fdd21fa62d50adc8"></a>double</td>
+<td class="fieldname">
+dLat</td>
+<td class="fielddoc">
+The GPS latitude. </td></tr>
+<tr><td class="fieldtype">
+<a id="a5df4172f33cf0850544c08e5f750afa1"></a>double</td>
+<td class="fieldname">
+dLong</td>
+<td class="fielddoc">
+The GPS longitude. </td></tr>
+<tr><td class="fieldtype">
+<a id="a74eef53683053c3da5601cc7a92bbed3"></a>int</td>
+<td class="fieldname">
+iZoom</td>
+<td class="fielddoc">
+The tile map level. </td></tr>
+</table>
+
+</div>
+</div>
+<h2 class="groupheader">Function Documentation</h2>
+<a id="a3c04138a5bfe5d72780bb7e82a18e627"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3c04138a5bfe5d72780bb7e82a18e627">&#9670;&nbsp;</a></span>main()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int main </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>argc</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char **&#160;</td>
+          <td class="paramname"><em>argv</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="reference">References <a class="el" href="../../df/d0a/main_8cpp.html#a8049a3fdabf9b9f6fdd21fa62d50adc8">Position::dLat</a>, <a class="el" href="../../df/d0a/main_8cpp.html#a5df4172f33cf0850544c08e5f750afa1">Position::dLong</a>, <a class="el" href="../../df/d0a/main_8cpp.html#a74eef53683053c3da5601cc7a92bbed3">Position::iZoom</a>, <a class="el" href="../../df/d0a/main_8cpp.html#a1b28050de07af723f8c908a4c1edc09f">parseArgs()</a>, and <a class="el" href="../../df/d0a/main_8cpp.html#ad412ed60514b0d9c59e846b889a5e8b5">parseGPS()</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="../../df/d0a/main_8cpp_a3c04138a5bfe5d72780bb7e82a18e627_cgraph.png" border="0" usemap="#adf/d0a/main_8cpp_a3c04138a5bfe5d72780bb7e82a18e627_cgraph" alt=""/></div>
+<map name="adf/d0a/main_8cpp_a3c04138a5bfe5d72780bb7e82a18e627_cgraph" id="adf/d0a/main_8cpp_a3c04138a5bfe5d72780bb7e82a18e627_cgraph">
+<area shape="rect" title=" " alt="" coords="5,31,60,57"/>
+<area shape="rect" href="../../df/d0a/main_8cpp.html#a1b28050de07af723f8c908a4c1edc09f" title="Parse arguments from user." alt="" coords="108,5,195,32"/>
+<area shape="rect" href="../../df/d0a/main_8cpp.html#ad412ed60514b0d9c59e846b889a5e8b5" title="Parse GPS point to connvert the coordinate system." alt="" coords="109,56,193,83"/>
+<area shape="rect" href="../../d0/d45/WebMercator_8h.html#ae8f028f3976e0b73ed3f382dc7d6cf40" title=" " alt="" coords="249,31,327,57"/>
+<area shape="rect" href="../../d0/d45/WebMercator_8h.html#a0bf4745bde3568070f23e865d473087e" title=" " alt="" coords="243,81,333,108"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a1b28050de07af723f8c908a4c1edc09f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1b28050de07af723f8c908a4c1edc09f">&#9670;&nbsp;</a></span>parseArgs()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int parseArgs </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>argc</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char **&#160;</td>
+          <td class="paramname"><em>argv</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="../../df/d0a/main_8cpp.html#d0/df4/structPosition">Position</a> &amp;&#160;</td>
+          <td class="paramname"><em>oPosition</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Parse arguments from user. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">argc</td><td>The number of the arguments. </td></tr>
+    <tr><td class="paramname">argv</td><td>The list of the arguments. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="retval"><dt>Return values</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">0</td><td>Succeed to parse the arguments. </td></tr>
+    <tr><td class="paramname">-1</td><td>Fail to parse the arguments. </td></tr>
+    <tr><td class="paramname">1</td><td>Show usage. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="reference">References <a class="el" href="../../df/d0a/main_8cpp.html#a8049a3fdabf9b9f6fdd21fa62d50adc8">Position::dLat</a>, <a class="el" href="../../df/d0a/main_8cpp.html#a5df4172f33cf0850544c08e5f750afa1">Position::dLong</a>, and <a class="el" href="../../df/d0a/main_8cpp.html#a74eef53683053c3da5601cc7a92bbed3">Position::iZoom</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="../../df/d0a/main_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627">main()</a>.</p>
+
+</div>
+</div>
+<a id="ad412ed60514b0d9c59e846b889a5e8b5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad412ed60514b0d9c59e846b889a5e8b5">&#9670;&nbsp;</a></span>parseGPS()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void parseGPS </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../df/d0a/main_8cpp.html#d0/df4/structPosition">Position</a> &amp;&#160;</td>
+          <td class="paramname"><em>oPosition</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Parse GPS point to connvert the coordinate system. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">oPosition</td><td>This struct contains GPS point. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="reference">References <a class="el" href="../../df/d0a/main_8cpp.html#a8049a3fdabf9b9f6fdd21fa62d50adc8">Position::dLat</a>, <a class="el" href="../../df/d0a/main_8cpp.html#a5df4172f33cf0850544c08e5f750afa1">Position::dLong</a>, <a class="el" href="../../df/d0a/main_8cpp.html#a74eef53683053c3da5601cc7a92bbed3">Position::iZoom</a>, <a class="el" href="../../d0/d45/WebMercator_8h.html#ae8f028f3976e0b73ed3f382dc7d6cf40">lat2TileY()</a>, and <a class="el" href="../../d0/d45/WebMercator_8h.html#a0bf4745bde3568070f23e865d473087e">long2TileX()</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="../../df/d0a/main_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627">main()</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="../../df/d0a/main_8cpp_ad412ed60514b0d9c59e846b889a5e8b5_cgraph.png" border="0" usemap="#adf/d0a/main_8cpp_ad412ed60514b0d9c59e846b889a5e8b5_cgraph" alt=""/></div>
+<map name="adf/d0a/main_8cpp_ad412ed60514b0d9c59e846b889a5e8b5_cgraph" id="adf/d0a/main_8cpp_ad412ed60514b0d9c59e846b889a5e8b5_cgraph">
+<area shape="rect" title="Parse GPS point to connvert the coordinate system." alt="" coords="5,31,89,57"/>
+<area shape="rect" href="../../d0/d45/WebMercator_8h.html#ae8f028f3976e0b73ed3f382dc7d6cf40" title=" " alt="" coords="143,5,222,32"/>
+<area shape="rect" href="../../d0/d45/WebMercator_8h.html#a0bf4745bde3568070f23e865d473087e" title=" " alt="" coords="137,56,228,83"/>
+</map>
+</div>
+
+</div>
+</div>
+</div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="../../dir_d28a4824dc47e487b107a5db32ef43c4.html">examples</a></li><li class="navelem"><a class="el" href="../../dir_91cef25c8fb3f79c1cccf5268252311b.html">testWebMercator</a></li><li class="navelem"><a class="el" href="../../df/d0a/main_8cpp.html">main.cpp</a></li>
+    <li class="navelem"><a class="el" href="../../dir_d28a4824dc47e487b107a5db32ef43c4.html">examples</a></li><li class="navelem"><a class="el" href="../../dir_91cef25c8fb3f79c1cccf5268252311b.html">testWebMercator</a></li><li class="navelem"><a class="el" href="../../dir_8647e929a8703907dfe3eacf2e10375d.html">src</a></li><li class="navelem"><a class="el" href="../../df/d0a/main_8cpp.html">main.cpp</a></li>
     <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
   </ul>
 </div>
