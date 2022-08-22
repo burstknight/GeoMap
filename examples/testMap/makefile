@@ -8,17 +8,17 @@
 debug ?= 0
 
 # These directories is set to compile this project.
-Includes_Dir = ./includes
+Includes_Dir = ../../includes
 Sourc_Dir = ./src
-Bin_Dir = ./bin
+Bin_Dir = ../../bin/examples/testMap
 
 # Set the code file extension.
 File_Extension := cpp
 
 # Set compiler and flags.
 CC = g++
-CFLAGS = -I $(Includes_Dir) $(shell pkg-config --cflags opencv4)
-LIBS = $(shell pkg-config --libs opencv4)
+CFLAGS = -I $(Includes_Dir) $(shell pkg-config --cflags opencv4) $(shell pkg-config --cflags libcurl)
+LIBS = -L../../bin -lGeoMap $(shell pkg-config --libs opencv4) $(shell pkg-config --libs libcurl)
 
 # List all source code in the src directory
 Sourcs := $(wildcard $(Sourc_Dir)/*.$(File_Extension))
@@ -27,7 +27,7 @@ Sourcs := $(wildcard $(Sourc_Dir)/*.$(File_Extension))
 Objects := $(patsubst $(Sourc_Dir)/%.$(File_Extension), $(Bin_Dir)/%.o, $(Sourcs))
 
 # Set the target file name
-Target = libGeoMap.a
+Target = testMap
 
 # Switch compile mode
 ifeq ($(debug), 1)
@@ -41,10 +41,9 @@ endif
 
 # Compile the target file with the object files.
 all: $(Bin_Dir)/$(Target)
-	cd ./examples; $(MAKE) debug=$(debug)
 
 $(Bin_Dir)/$(Target): $(Objects)
-	ar -rcs $@ $^
+	$(CC) -o $@ $^ $(CFLAGS) $(LIBS)
 
 # Compile the source code to the object files.
 $(Bin_Dir)/%.o: $(Sourc_Dir)/%.$(File_Extension)
@@ -53,7 +52,5 @@ $(Bin_Dir)/%.o: $(Sourc_Dir)/%.$(File_Extension)
 
 # Clean all compiled files.
 clean:
-	rm -f $(Bin_Dir)/*.a
-	rm -f $(Bin_Dir)/*.o
-	cd ./examples; $(MAKE) clean
+	rm -f $(Bin_Dir)/*
 

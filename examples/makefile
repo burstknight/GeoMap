@@ -4,6 +4,8 @@ debug ?= 0
 
 all:
 	cd ./testWebMercator; $(MAKE) debug=$(debug)
+	cd ./testMap; $(MAKE) debug=$(debug)
 
 clean:
 	cd ./testWebMercator; $(MAKE) clean
+	cd ./testMap; $(MAKE) clean
