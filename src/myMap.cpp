@@ -1,15 +1,9 @@
 #include "../includes/myMap.h"
 #include "../includes/WebMercator.h"
 #include "opencv2/core/mat.hpp"
+#include "opencv2/core/matx.hpp"
 #include "opencv2/core/types.hpp"
-#include <cassert>
-#include <cmath>
-#include <cstddef>
-#include <cstdio>
-#include <cstdlib>
-#include <cstring>
 #include <curl/curl.h>
-#include <curl/easy.h>
 #include <math.h>
 #include <string>
 #include <vector>
@@ -24,6 +18,10 @@ myMap::myMap(double dLat, double dLong, int iZoom, int iWidth, int iHeight){
 
 	assert(this->m_iZoom <= Zoom_Max);
 } // End of constructor
+
+myMap::~myMap(){
+	m_mMap.release();
+} // End of destructor
 
 void myMap::getTilesCoord(std::vector<cv::Point2i> &vTileCoords, cv::Size2i &oTileSize){
 	vTileCoords.clear();
@@ -48,15 +46,23 @@ void myMap::getTilesCoord(std::vector<cv::Point2i> &vTileCoords, cv::Size2i &oTi
 } // End of getTilesCoord
 
 size_t myMap::writeMemoryCallback(void *pContents, size_t iSize, size_t nmemb, void *userp){
-	size_t realSize = iSize*nmemb;
-	realloc(userp, realSize);
-	memcpy(userp, pContents, realSize);
-	return realSize;
+	size_t iRealSize = iSize*nmemb;
+	BufferStruct *poBuffer = (BufferStruct*)userp;
+	char *pcNewBuffer = (char*)realloc(poBuffer->pcBuffer, iRealSize + poBuffer->iSize);
+	if(NULL == pcNewBuffer){
+		printf("Error: Out of memory to get OSM map!\n");
+		return 0;
+	} // End of if-condition
+
+	poBuffer->pcBuffer = pcNewBuffer;
+	memcpy(&(poBuffer->pcBuffer[poBuffer->iSize]), pContents, iRealSize);
+	poBuffer->iSize += iRealSize;
+	return iRealSize;
 } // End of writeMemoryCallback
 
 cv::Mat myMap::getMap(){
 	std::vector<cv::Point2i> vTileCoords;
-	char* pcBuffer = NULL;
+	BufferStruct oBuffer = {.pcBuffer = NULL, .iSize = 0};
 	cv::Size2i oTileSize;
 
 	getTilesCoord(vTileCoords, oTileSize);
@@ -67,35 +73,32 @@ cv::Mat myMap::getMap(){
 	CURLcode iRes;
 
 	char* pcUrl = (char*)malloc(sizeof(char)*1024);
-	char* ppcSubDomain[] = {"a", "b", "c"};
-	int index = 0;
+
+	curl_easy_setopt(curlHandle, CURLOPT_WRITEFUNCTION, writeMemoryCallback);
+	curl_easy_setopt(curlHandle, CURLOPT_WRITEDATA, &oBuffer);
+	curl_easy_setopt(curlHandle, CURLOPT_USERAGENT, "GeoMap/1.0");
+	curl_easy_setopt(curlHandle, CURLOPT_FOLLOWLOCATION, 1L);
 	for(int i = 0; i < vTileCoords.size(); i++){
-		sprintf(pcUrl,"http://%s.tile.openstreetmap.org/%d/%d/%d.png", 
-				ppcSubDomain[index], m_iZoom, vTileCoords[i].x, vTileCoords[i].y);	
+		sprintf(pcUrl, "http://a.tile.openstreetmap.org/%d/%d/%d.png", 
+				m_iZoom, vTileCoords[i].x, vTileCoords[i].y);	
 
 		curl_easy_setopt(curlHandle, CURLOPT_URL, pcUrl);
-		curl_easy_setopt(curlHandle, CURLOPT_WRITEFUNCTION, writeMemoryCallback);
-		curl_easy_setopt(curlHandle, CURLOPT_WRITEDATA, pcBuffer);
-		curl_easy_setopt(curlHandle, CURLOPT_USERAGENT, "libcurl-agent/1.0");
-
-		curl_easy_setopt(curlHandle, CURLOPT_FOLLOWLOCATION, 1L);
-		curl_easy_setopt(curlHandle, CURLOPT_HTTPPROXYTUNNEL, 1L);
-		curl_easy_setopt(curlHandle, CURLOPT_VERBOSE, 1L);
 
 		iRes = curl_easy_perform(curlHandle);
 
 		if(CURLE_OK != iRes){
-			printf("Error: curl_easy_perform() falied: %s\n", curl_easy_strerror(iRes));
+			printf("\nError: curl_easy_perform() falied: %s\n", curl_easy_strerror(iRes));
 		} else {
+			printf("\n%lu bytes retrived\n", (unsigned long)oBuffer.iSize);
 			cv::Mat mRoi;
 			mRoi.create(256, 256, CV_8UC3);
-			memcpy(mRoi.data, pcBuffer, sizeof(char)*256*256);
+			memcpy(mRoi.data, &(oBuffer.pcBuffer[oBuffer.iSize]), oBuffer.iSize);
 			int iRow = 0, iCol = 0;
-			
+
 			for(int r = vTileCoords[i].y; r < vTileCoords[i].y + 256; r++){
 				iCol = 0;
 				for(int c = vTileCoords[i].x; c < vTileCoords[i].x + 256; c++){
-					m_mMap.at<uchar>(r, c) = mRoi.at<uchar>(iRow, iCol);
+					m_mMap.at<cv::Vec3b>(r, c) = mRoi.at<cv::Vec3b>(iRow, iCol);
 					iCol++;
 				} // End of for-loop
 
@@ -107,12 +110,10 @@ cv::Mat myMap::getMap(){
 	
 	curl_easy_cleanup(curlHandle);
 	curl_global_cleanup();
-	if(NULL == pcBuffer){
-		free(pcBuffer);
-		pcBuffer = NULL;
-	} // End of if-condition
 	free(pcUrl);
 	pcUrl = NULL;
+	free(oBuffer.pcBuffer);
+	oBuffer.pcBuffer = NULL;
 
 	cv::Rect2i oRoi;
 	oRoi.width = m_iWidth;

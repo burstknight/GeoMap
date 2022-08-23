@@ -1,5 +1,3 @@
-#include <cstddef>
-#include <stdlib.h>
 #include <stdio.h>
 #include "../../../includes/myMap.h"
 #include "opencv2/imgcodecs.hpp"
@@ -33,7 +31,7 @@ int parseArgs(int argc, char** argv, Params &oParms);
 void testDownloadMap(Params &oParms);
 
 int main(int argc, char** argv){
-	Params oParms = {0.0, 0.0, 19, (char*)malloc(sizeof(char)*1024)};
+	Params oParms = {26.0, 121.0, 19, (char*)malloc(sizeof(char)*1024)};
 
 	sprintf(oParms.pcPath, "./map.bmp");
 
@@ -84,7 +82,7 @@ int parseArgs(int argc, char** argv, Params &oParms){
 } // End of parseArgs
 
 void testDownloadMap(Params &oParms){
-	myMap* poMap = new myMap(oParms.dLat, oParms.dLong, oParms.iZoom);
+	myMap *poMap = new myMap(oParms.dLat, oParms.dLong, oParms.iZoom);
 	
 	printf("Downloading map from OSM...");
 	cv::Mat mImage = poMap->getMap();
@@ -92,8 +90,8 @@ void testDownloadMap(Params &oParms){
 
 	printf("Storing image...");
 	cv::imwrite(oParms.pcPath, mImage);
-	printf(" Done!\n");
 
 	delete poMap;
 	poMap = NULL;
+	printf(" Done!\n");
 } // End of testDownloadMap

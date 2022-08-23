@@ -3,7 +3,6 @@
 
 #include "opencv2/core/mat.hpp"
 #include "opencv2/core/types.hpp"
-#include <cstddef>
 #include <opencv2/opencv.hpp>
 #include <utility>
 #include <vector>
@@ -12,6 +11,11 @@
 #define Zoom_Max  19
 #define Tile_Width 256
 #define Tile_Height 256
+
+struct BufferStruct{
+	char *pcBuffer;
+	size_t iSize;
+};
 
 /**
  * Desciption: This class can parse GPS position to get map from OSM
@@ -37,6 +41,8 @@ class myMap{
 		 * @param iHeight: The map image height
 		 */
 		myMap(double dLat, double dLong, int iZoom, int iWidth = 1900, int iHeight = 1000);
+
+		~myMap();
 
 		/** 
 		 * Desciption: Get map image
